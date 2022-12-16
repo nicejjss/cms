@@ -28,11 +28,6 @@ if ($id != null) {
     }
     }
     ?>
-<script>
-    if(window.history.replaceState){
-        window.history.replaceState(null,null,window.location.href);
-    }
-</script>
 <!-- Navigation -->
 <?php include("./includes/navigation.php") ?>
 <!-- Page Content -->
