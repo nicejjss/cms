@@ -15,24 +15,24 @@ if ($id != null) {
 }
 
 ?>
- <?php
-    if (isset($_POST["submit"])) {
-        $comauthor = $_POST["author"];
-        $comcontent = $_POST["content"];
-        if($comcontent && $_POST["content"]!=""){
+<?php
+if (isset($_POST["submit"])) {
+    $comauthor = $_POST["author"];
+    $comcontent = $_POST["content"];
+    if ($comcontent) {
         $query = "INSERT INTO `comment`(`post_id`, `comment_author`, `comment_date`, `comment_content`) VALUES (${id},'${comauthor}',NOW(),'${comcontent}')";
-        $result = mysqli_query($connection,$query);
-        if(!$result)
-            die("Fail: ".mysqli_error($connection));
-         
+        $result = mysqli_query($connection, $query);
+        if (!$result)
+            die("Fail: " . mysqli_error($connection));
     }
-    }
-    ?>
+    header("Location: "."post.php?postid=$id");
+}
+?>
 <!-- Navigation -->
 <?php include("./includes/navigation.php") ?>
 <!-- Page Content -->
 <div class="container">
-   
+
     <div class="row">
 
         <!-- Blog Post Content Column -->
@@ -70,7 +70,7 @@ if ($id != null) {
             <!-- Comments Form -->
             <div class="well">
                 <h4>Leave a Comment:</h4>
-                <form role="form" method="POST" action=""  target="_blank">
+                <form method="POST" action="">
                     <div class="form-group">
                         <input type="text" name="author" placeholder="Name" class="form-control">
                     </div>
@@ -86,7 +86,7 @@ if ($id != null) {
 
             <!-- Posted Comments -->
             <!-- Comment -->
-            <?php $query = "SELECT * FROM `comment` WHERE post_id = ${id}";
+            <?php $query = "SELECT * FROM `comment` WHERE post_id = ${id} and approve=1";
             $result = mysqli_query($connection, $query);
             while ($row = mysqli_fetch_assoc($result)) {
                 $owner = $row["comment_author"];
@@ -121,6 +121,6 @@ if ($id != null) {
 
     </div>
     <!-- /.row -->
-   
+
     <hr>
     <?php include("./includes/footer.php") ?>

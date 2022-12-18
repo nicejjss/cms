@@ -17,7 +17,7 @@
                     <small>Secondary Text</small>
                 </h1>
             <?php
-               $query="Select * from posts";
+               $query="Select * from posts where post_status='publish'";
                $result=mysqli_query($connection,$query);
                while($row = mysqli_fetch_assoc($result) ){
                    $postid=$row["post_id"];

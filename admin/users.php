@@ -25,11 +25,11 @@
                             $source ="";
                         }
                         switch($source){
-                            case "add comment": include("./includes/add_comment.php");break;
+                            // case "add comment": include("./includes/add_user.php");break;
                             case "100":echo "NICE 100";break;
                             case "200":echo "NICE 200";break;
-                            case "edit comment": include("./includes/edit_comment.php");break;
-                            default: include("./includes/view_all_comments.php");break;
+                            case "edit user": include("./includes/edit_user.php");break;
+                            default: include("./includes/view_all_users.php");break;
                         }
                   ?>
                 </div>

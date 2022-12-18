@@ -23,7 +23,6 @@
     </thead>
     <tbody>
         <!-- <tr>
-                     
                                 <td>10</td>
                                 <td>Nicejjss</td>
                                 <td>Cach su dung PHP</td>
@@ -33,7 +32,6 @@
                                 <td>Tags</td>
                                 <td>Comments</td>
                                 <td>10/12/2022</td>
-                          
                             </tr> -->
         <?php
         $query = "select * from posts join categories on category_id = categories.cat_id";

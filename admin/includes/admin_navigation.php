@@ -164,11 +164,11 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#user"><i class="fa fa-fw fa-arrows-v"></i>Users<i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="user" class="collapse">
                     <li>
-                        <a href="#">Dropdown Item</a>
+                        <a href="./users.php">View All Users</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#">Dropdown Item</a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <li >
