@@ -46,6 +46,7 @@
            $img=$row["post_image"];
            ?>
 
+
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Post Title</label>
