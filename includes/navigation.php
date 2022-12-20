@@ -31,9 +31,9 @@
                 }
 
                 ?>
-                <li>
+                <!-- <li>
                     <a href="admin">Admin</a>
-                </li>
+                </li> -->
                     <!-- <li>
                         <a href="#">About</a>
                     </li>

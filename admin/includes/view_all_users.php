@@ -49,6 +49,14 @@ if (isset($_GET["delete"])) {
                 <td><?php echo $userpassword; ?></td>
                 <td><?php echo $useremail; ?></td>
                 <td><?php echo $userrole; ?></td>
+                <td>
+                <?php  if($userrole =="admin"){
+                    echo "<a href='./users.php?source=edit user&admin=true&userid=${userid}'>Admin</a></td>";
+                }else{
+                    echo "<a href='./users.php?source=edit user&admin=false&userid=$userid'>User</a></td>";
+                }
+                ?>    
+                </td>
                 <td> <a href="./users.php?delete=<?php echo $userid ?>">DELETE</a></td>
             </tr>
         <?php }

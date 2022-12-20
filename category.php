@@ -12,15 +12,20 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-            <h1 class="page-header">
+            <!-- <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
-                </h1>
+                </h1> -->
             <?php
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
                 $query="SELECT * FROM `posts` where category_id=   $id ";
                 $result=mysqli_query($connection,$query);
+                $rows = mysqli_num_rows($result);
+                if($rows <=0){
+                    echo "<h1>No Posts Sorry</h1>";
+                }
+                else
                 while($row = mysqli_fetch_assoc($result) ){
                     $postid=$row["post_id"];
                     $posttitle=$row["post_title"];
