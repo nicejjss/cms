@@ -57,9 +57,14 @@ if (isset($_GET["delete"])) {
                 }
                 ?>    
                 </td>
-                <td> <a href="./users.php?delete=<?php echo $userid ?>">DELETE</a></td>
+                <td> <a onclick="return Delete()" href="./users.php?delete=<?php echo $userid ?>">DELETE</a></td>
             </tr>
         <?php }
         ?>
     </tbody>
 </table>
+<script>
+    function Delete(){
+       return confirm("Are you sure want to Delete it?")
+    }
+</script>

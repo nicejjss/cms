@@ -17,7 +17,7 @@
     </div>
     <div class="well">
         <h4>Login</h4>
-        <form action="includes/login.php" method="post">
+        <form action="./includes/login.php" method="post">
             <div class="input-group">
             <input name="name" type="text" class="form-control" placeholder="user name">
                 <input name="password" type="text" class="form-control" placeholder="user password">

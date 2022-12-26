@@ -19,13 +19,21 @@ if ($id != null) {
 if (isset($_POST["submit"])) {
     $comauthor = $_POST["author"];
     $comcontent = $_POST["content"];
-    if ($comcontent) {
-        $query = "INSERT INTO `comment`(`post_id`, `comment_author`, `comment_date`, `comment_content`) VALUES (${id},'${comauthor}',NOW(),'${comcontent}')";
+    switch(true){
+        case (empty($comauthor)):  echo "<script>alert('Name Not Empty')</script>"; break;
+        case (empty($comcontent)): echo "<script>alert('Comment Not Empty')</script>"; break;
+        default:   $query = "INSERT INTO `comment`(`post_id`, `comment_author`, `comment_date`, `comment_content`) VALUES (${id},'${comauthor}',NOW(),'${comcontent}')";
         $result = mysqli_query($connection, $query);
         if (!$result)
-            die("Fail: " . mysqli_error($connection));
+            die("Fail: " . mysqli_error($connection)); header("Location: "."post.php?postid=$id");break;
     }
-    header("Location: "."post.php?postid=$id");
+    // if ($comcontent) {
+    //     $query = "INSERT INTO `comment`(`post_id`, `comment_author`, `comment_date`, `comment_content`) VALUES (${id},'${comauthor}',NOW(),'${comcontent}')";
+    //     $result = mysqli_query($connection, $query);
+    //     if (!$result)
+    //         die("Fail: " . mysqli_error($connection));
+    // }
+    // header("Location: "."post.php?postid=$id");
 }
 ?>
 <!-- Navigation -->

@@ -19,7 +19,7 @@
             <?php
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
-                $query="SELECT * FROM `posts` where category_id=   $id ";
+                $query="SELECT * FROM `posts` where category_id= $id and post_status='publish' ";
                 $result=mysqli_query($connection,$query);
                 $rows = mysqli_num_rows($result);
                 if($rows <=0){
@@ -29,7 +29,7 @@
                 while($row = mysqli_fetch_assoc($result) ){
                     $postid=$row["post_id"];
                     $posttitle=$row["post_title"];
-                    $postcontent=$row["post_content"];
+                    $postcontent=substr($row["post_content"],0,150);
                     $postauthor=$row["post_author"];
                     $postdate=$row["post_date"];
                     $postimage=$row["post_image"];

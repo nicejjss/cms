@@ -17,8 +17,11 @@
             $_SESSION["name"] =$name;
             header("Location: "."../admin/index.php");
          }
-         else
-            header("Location: "."index.php");
+         else{
+          echo "<script>alert('Sai ten hoac mat khau')</script>";
+          header("Location: "."../index.php");
+         }
+
      
      }
 

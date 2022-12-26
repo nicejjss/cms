@@ -1,19 +1,48 @@
 <?php include("./includes/admin_header.php") ?>
 <?php
+
 $userquery = "Select Count(*) as number from user";
 $commentquery = "Select Count(*) as number from comment";
 $postquery = "Select Count(*) as number from posts";
 $categoryquery = "Select Count(*) as number from categories";
 
+$postpublish ="SELECT COUNT(*) as number FROM `posts` WHERE post_status='publish'";
+$postdraft="SELECT COUNT(*) as number FROM `posts` WHERE post_status='draft'";
+
+$approvecomments="SELECT Count(*) as number FROM `comment` WHERE approve=1";
+$disapprovecomments="SELECT Count(*) as number FROM `comment` WHERE approve=0";
+
+
+
+//    Extract SQL comand
 $userresult = mysqli_query($connection, $userquery);
 $commentresult = mysqli_query($connection, $commentquery);
 $categoryresult = mysqli_query($connection, $categoryquery);
 $postresult = mysqli_query($connection, $postquery);
 
+$publishresult= mysqli_query($connection,$postpublish);
+$draftresult= mysqli_query($connection,$postdraft);
+
+$approveresult = mysqli_query($connection,$approvecomments);
+$disapproveresult = mysqli_query($connection,$disapprovecomments);
+
+
+
+//Number SQL
 $usernumber = mysqli_fetch_assoc($userresult)["number"];
 $postnumber = mysqli_fetch_assoc($postresult)["number"];
 $categorynumber = mysqli_fetch_assoc($categoryresult)["number"];
 $commentnumber = mysqli_fetch_assoc($commentresult)["number"];
+
+$publishnumber =mysqli_fetch_assoc($publishresult)["number"];
+$draftnumber =mysqli_fetch_assoc($draftresult)["number"];
+
+$approvenumber = mysqli_fetch_assoc($approveresult)["number"];
+$disapprovenumber = mysqli_fetch_assoc($disapproveresult)["number"];
+
+
+unset($userquery);
+
 
 
 ?>
@@ -146,8 +175,12 @@ $commentnumber = mysqli_fetch_assoc($commentresult)["number"];
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['', 'Count'],
-          ['Posts', <?php echo $postnumber?>],
-          ['Comments', <?php echo $commentnumber?>],
+          ['All Posts', <?php echo $postnumber?>],
+          ['Publish Post',<?php echo $publishnumber?>],
+          ['Draft Post',<?php echo $draftnumber?>],
+          ['All Comments', <?php echo $commentnumber?>],
+          ['Publish Comments',<?php echo $approvenumber?>],
+          ['Pending Comments',<?php echo $disapprovenumber?>],
           ['Users', <?php echo $usernumber?>],
           ['Categories', <?php echo $categorynumber?>]
         ]);

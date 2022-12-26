@@ -31,9 +31,20 @@
                 }
 
                 ?>
-                <!-- <li>
-                    <a href="admin">Admin</a>
-                </li> -->
+                <?php
+                  
+                if(isset($_SESSION["role"]) and $_SESSION["role"] =="admin"){
+                    echo   "  <li>
+                    <a href='admin'>Admin</a>
+                </li>";
+                }
+                else{
+                    echo   "  <li>
+                    <a href='./registration.php'>Log Up</a>
+                </li>";
+                }
+                    ?>
+              
                     <!-- <li>
                         <a href="#">About</a>
                     </li>
@@ -44,7 +55,7 @@
                         <a href="#">Contact</a>
                     </li> -->
 
-
+       
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

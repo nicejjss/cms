@@ -81,7 +81,18 @@
     </div>
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="status" value="<?php echo $status?>">
+        <select name="status" id="">
+        <option value="<?php echo $status?>"><?php echo $status?></option>
+            <?php 
+              if($status == "draft"){
+                echo  "   <option value='publish'>publish</option>";
+              }
+              else{
+                echo  "   <option value='draft'>draft</option>";
+              }
+            ?>
+        </select>
+      
     </div>
     <div class="form-group" id="postimg">
         <label for="post_image">Post Image</label>
@@ -94,7 +105,7 @@
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control " name="content" id="" cols="30" rows="10">
+        <textarea class="form-control " name="content" id="editor" cols="30" rows="10">
             <?php echo $content?>
          </textarea>
     </div>
@@ -107,6 +118,14 @@
     }
 ?>
 <script>
+
+
+ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+
      var postimg=document.getElementById("postimg");
      var img= document.getElementsByName("image")[0];
      img.onchange=function(e){

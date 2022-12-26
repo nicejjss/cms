@@ -17,12 +17,29 @@
                     <small>Secondary Text</small>
                 </h1> -->
             <?php
-               $query="Select * from posts where post_status='publish'";
+          $postperpage =5;
+
+         $query="Select * from posts where post_status='publish'";
+         $result=mysqli_query($connection,$query);
+         $rows_count = mysqli_num_rows($result);
+        //  echo $rows_count;
+         $page =ceil($rows_count/$postperpage);
+        //  echo "<br>".$page;
+         $currentpage = 1;
+           if(isset($_GET["page"])){
+              $currentpage = (int)$_GET["page"];
+              if($currentpage > $page){
+                $currentpage = $page;
+              }
+           }
+         $index = $currentpage*$postperpage - $postperpage;
+
+               $query="Select * from posts where post_status='publish' LIMIT $index,$postperpage ";
                $result=mysqli_query($connection,$query);
                while($row = mysqli_fetch_assoc($result) ){
                    $postid=$row["post_id"];
                    $posttitle=$row["post_title"];
-                   $postcontent=$row["post_content"];
+                   $postcontent= substr($row["post_content"],0,150);
                    $postauthor=$row["post_author"];
                    $postdate=$row["post_date"];
                    $postimage=$row["post_image"];
@@ -102,5 +119,19 @@
         <!-- /.row -->
 
         <hr>
+        <ul class="pager">
+        <?php for($i=1;$i<=$page;$i++){
+            if($i == $currentpage){
+                echo "<li><a style='background-color: whitesmoke;' href='index.php?page=${i}'>".$i."</a></li>";
+            }
+            else{
+                echo "<li><a href='index.php?page=${i}'>".$i."</a></li>";
+            }
+          
+
+       }?>
+        </ul>
+        <a ></a>
+      
 <?php include("./includes/footer.php")?>
      

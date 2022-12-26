@@ -1,3 +1,8 @@
+<?php               
+    session_start();
+    // $_SESSION["role"] =null;
+    // $_SESSION["name"] =null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
