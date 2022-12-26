@@ -1,3 +1,4 @@
 # cms With PHP + MySQL
-# use like admin: usename: nicejjss
+#Using like Admin
+# usename: nicejjss
 #                 password: 123456
