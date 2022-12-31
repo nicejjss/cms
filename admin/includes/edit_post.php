@@ -1,3 +1,4 @@
+
 <?php 
     if(isset($_POST["edit_post"])){
         $id=$_GET["postid"];
@@ -36,6 +37,7 @@
     $query="SELECT `post_id`, `category_id`, `post_title`, `post_author`, `post_user`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_views_count` FROM `posts` WHERE post_id= $postid";
      
      $result=mysqli_query($connection,$query);
+
      while($row=mysqli_fetch_assoc($result)){
            $title=$row["post_title"];
            $category=$row["category_id"];

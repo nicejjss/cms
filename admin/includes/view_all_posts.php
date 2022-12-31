@@ -1,3 +1,5 @@
+<?php include("modal.php") ?>
+
 <?php
 if (isset($_GET["delete"])) {
     $delete = $_GET["delete"];
@@ -98,7 +100,10 @@ if (isset($_POST["checkBoxArray"])) {
                     <td><?php echo $postcommentcount; ?></td>
                     <td><?php echo $postdate; ?></td>
                     <td> <a href="../post.php?postid=<?php echo $postid ?>">View Post</a></td>
-                    <td> <a href="./posts.php?delete=<?php echo $postid ?>"><button name="delete-submit" class="btn btn-danger">DELETE</button></a></td>
+                    <td>
+                        <!--  <a href="./posts.php?delete=<?php echo $postid ?>"><button type="button"  onclick=" return CheckDelete()" name="delete-submit" class="btn btn-danger data-target">DELETE</button></a> -->
+                        <a href="javascript:void(0)" class="delete_link" rel="<?php echo $postid ?>"><button type="button" name="delete-submit" value="<?php echo $postid ?>" class="btn btn-danger data-target">DELETE</button></a>
+                    </td>
                     <td> <a href="./posts.php?source=edit post&postid=<?php echo $postid ?>">Edit</a></td>
 
                 </tr>
@@ -109,35 +114,53 @@ if (isset($_POST["checkBoxArray"])) {
 </form>
 
 <script>
+    window.onload = function() {
+        var list = document.getElementsByClassName("delete_link");
+        for (let i = 0; i < list.length; i++) {
+            list[i].onclick = ShowModal;
+        }
+    }
+
+    function ShowModal() {
+        let id =this.rel;
+       var modal =document.getElementById('modal_delete_link');
+         modal.href = "./posts.php?delete="+id;
+       $('#exampleModal').modal('show');
+       document.getElementById("exampleModalLabel").innerText="PostID: "+id;
+    }
+    function CheckDelete() {
+        return confirm("Are you sure to delete it?");
+    }
+
+
     function CheckAll(event) {
 
-       var checkall = document.getElementById("selectAllBoxes");
-      if(checkall.checked){
-        var inputs = document.getElementsByClassName("checkBoxes");
-          for(let i =0;i<inputs.length;i++){
-                 inputs[i].checked = true;
-          }
-      }
-      else{
-        var inputs = document.getElementsByClassName("checkBoxes");
-        for(let i =0;i<inputs.length;i++){
-                 inputs[i].checked = false;
-          }
-      }
+        var checkall = document.getElementById("selectAllBoxes");
+        if (checkall.checked) {
+            var inputs = document.getElementsByClassName("checkBoxes");
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].checked = true;
+            }
+        } else {
+            var inputs = document.getElementsByClassName("checkBoxes");
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].checked = false;
+            }
+        }
 
-    // $(document).ready(function(){
-    //     $('#selectAllBoxes').click(function(event){
-    //         if(this.checked){
-    //             $('.checkBoxes').each(function(){
-    //                 this.checked =true;
-    //             })
-    //         }
-    //         else{
-    //             $('.checkBoxes').each(function(){
-    //                 this.checked =false;
-    //             })
-    //         }
-    //     })
-    // })
-      }
+        // $(document).ready(function(){
+        //     $('#selectAllBoxes').click(function(event){
+        //         if(this.checked){
+        //             $('.checkBoxes').each(function(){
+        //                 this.checked =true;
+        //             })
+        //         }
+        //         else{
+        //             $('.checkBoxes').each(function(){
+        //                 this.checked =false;
+        //             })
+        //         }
+        //     })
+        // })
+    }
 </script>
