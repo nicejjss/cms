@@ -19,5 +19,5 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
-
+<?php ob_flush()?>
 </html>
