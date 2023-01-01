@@ -12,15 +12,24 @@
             $username = mysqli_real_escape_string($connection,$_POST["username"]);
             $email =  mysqli_real_escape_string($connection,$_POST["email"]);
             $password =  mysqli_real_escape_string($connection,$_POST["password"]);
-            if(empty($username) or empty($email) or empty($password)){
-                echo "<script>alert('Must fill Fields')</script>";
-            }
-            else{
-               $query ="INSERT INTO `user`( `name`, `email`, `password`, `image`, `role`) VALUES ('$username',' $email','$password','','user')";
-               $result = mysqli_query($connection,$query);
-               if(!$result){
-                 die("Fails: ".mysqli_error($connection));
-               }
+            $query ="Select * from user where name ='$username' or email='$email'";
+            $result = mysqli_query($connection,$query);
+            $rows = mysqli_fetch_row($result);
+            switch(true){
+                case($username==''):  echo "<script>alert('You must have User Name')</script>";break;
+                case($email == ''):  echo "<script>alert('You must have Email')</script>";break;
+                case($password == ''):  echo "<script>alert('You must have Password')</script>";break;
+                case($email == ''):  echo "<script>alert('You must have Email')</script>";break;
+                case($rows > 0 ):echo "<script>alert('This Email or Username have been used')</script>";break;
+                default:  $query ="INSERT INTO `user`( `name`, `email`, `password`, `image`, `role`) VALUES ('$username',' $email','$password','','user')";
+                $result = mysqli_query($connection,$query);
+                if(!$result){
+                  die("Fails: ".mysqli_error($connection));
+                }
+                else{
+                    header("location: ".'./admin/index.php');
+                }
+                ;break;
             }
          }
       
