@@ -27,6 +27,8 @@
                   die("Fails: ".mysqli_error($connection));
                 }
                 else{
+                    $_SESSION["name"] = $username;
+                    $_SESSION["role"] = 'user';
                     header("location: ".'./admin/index.php');
                 }
                 ;break;
