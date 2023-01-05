@@ -19,10 +19,16 @@
             <?php
             if(isset($_GET["id"])){
                 $id = $_GET["id"];
-                $query="SELECT * FROM `posts` where category_id= $id and post_status='publish' ";
-                $result=mysqli_query($connection,$query);
-                $rows = mysqli_num_rows($result);
-                if($rows <=0){
+                $query="SELECT post_id,post_title,post_content,post_author,post_date,post_image FROM `posts` where category_id= ? and post_status='publish'";
+
+                $stmt =mysqli_prepare($connection,$query);
+                mysqli_stmt_bind_param($stmt,'i',$id);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+               
+                // $result=mysqli_query($connection,$query);
+                // $rows = mysqli_num_rows($result);
+                if(mysqli_num_rows($result) <=0){
                     echo "<h1>No Posts Sorry</h1>";
                 }
                 else

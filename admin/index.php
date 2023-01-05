@@ -204,3 +204,28 @@ unset($userquery);
     <!-- /#page-wrapper -->
 
     <?php include("./includes/admin_footer.php") ?>
+
+   <!-- Toast -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <!-- Pusher -->
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    
+    <script>
+
+// Enable pusher logging - don't include this in production
+
+var pusher = new Pusher('b740574d913375f27467', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('notification');
+channel.bind('new_user', function(notification) {
+ var message = notification.message;
+
+toastr.success(`${message} just log up`);
+
+ console.log(message);
+});
+</script>

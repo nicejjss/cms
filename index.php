@@ -31,6 +31,9 @@
               if($currentpage > $page){
                 $currentpage = $page;
               }
+              if($currentpage < 1 ){
+                $currentpage=1;
+              }
            }
          $index = $currentpage*$postperpage - $postperpage;
 

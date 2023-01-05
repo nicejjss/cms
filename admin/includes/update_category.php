@@ -22,11 +22,20 @@
                                 
                                 if (isset($_POST["edit-submit"])) {
                                     $name = $_POST["edit-name"];
-                                    $query = "UPDATE categories SET cat_title='$name' WHERE cat_id= '$edit'";
-                                    $result = mysqli_query($connection, $query);
+
+
+                                    $query = "UPDATE categories SET cat_title= ? WHERE cat_id= ?";
+
+                                    $stmt = mysqli_prepare($connection,$query);
+
+                                    mysqli_stmt_bind_param($stmt,'si',$name,$edit);
+
+                                    mysqli_stmt_execute($stmt);
+                                    
+                                    $result = mysqli_stmt_get_result($stmt);
+
+                                    mysqli_stmt_close($stmt);
                                 }
-
-
                                 ?>
                             </div>
                             <div class="form-group">

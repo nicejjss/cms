@@ -9,9 +9,18 @@
                     echo "this field must be filled";
                 } else {
                     $cattile = mysqli_real_escape_string($connection, $cattile);
-                    $query = "INSERT INTO categories(cat_title) VALUES ('$cattile')";
-                    $result = mysqli_query($connection, $query);
-                    if (!$result) {
+                    $query = "INSERT INTO categories(cat_title) VALUES (?)";
+                   
+                    $stmt =mysqli_prepare($connection,$query);
+
+                    mysqli_stmt_bind_param($stmt,'s', $cattile);
+
+                    mysqli_stmt_execute($stmt);
+
+
+
+                   
+                    if (!$stmt) {
                         die("Error: " . mysqli_error($connection));
                     }
                 }

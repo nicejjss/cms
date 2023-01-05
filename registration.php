@@ -1,6 +1,23 @@
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
 
+ <!-- Pusher -->
+ <?php
+  require __DIR__ . '/vendor/autoload.php';
+
+  $options = array(
+    'cluster' => 'ap1',
+    'useTLS' => true
+  );
+  $pusher = new Pusher\Pusher(
+    'b740574d913375f27467',
+    '4938b5849bdf28005636',
+    '1532851',
+    $options
+  );
+
+
+?>
 
     <!-- Navigation -->
     
@@ -22,7 +39,12 @@
                 case($email == ''):  echo "<script>alert('You must have Email')</script>";break;
                 case($rows > 0 ):echo "<script>alert('This Email or Username have been used')</script>";break;
                 default:  $query ="INSERT INTO `user`( `name`, `email`, `password`, `image`, `role`) VALUES ('$username',' $email','$password','','user')";
-                $result = mysqli_query($connection,$query);
+                $result = mysqli_query($connection,$query);  
+                 
+
+                $data['message'] = $username;
+                $pusher->trigger('notification','new_user',$data);
+
                 if(!$result){
                   die("Fails: ".mysqli_error($connection));
                 }

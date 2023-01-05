@@ -22,9 +22,11 @@
                 <?php if(!isset($_SESSION['name'])){?>
                 <input name="name" type="text" class="form-control" placeholder="user name">
                 <input name="password" type="text" class="form-control" placeholder="user password">
+                
                 <button name="submit" class="btn btn-default" style="color: white; background-color: blue;">
                     Submit
                 </button>
+                <a style="margin: 20px;" href="./forgot.php">Forgot Password</a>
                 <?php }else{?>
                     <p>You have loged in as <?php echo $_SESSION['name']?></p>
                     <a href="./admin/includes/logout.php">Log Out</a>
