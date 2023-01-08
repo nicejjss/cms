@@ -128,9 +128,10 @@ if (isset($_POST["checkBoxArray"])) {
        $('#exampleModal').modal('show');
        document.getElementById("exampleModalLabel").innerText="PostID: "+id;
     }
-    function CheckDelete() {
-        return confirm("Are you sure to delete it?");
-    }
+
+    // function CheckDelete() {
+    //     return confirm("Are you sure to delete it?");
+    // }
 
 
     function CheckAll(event) {

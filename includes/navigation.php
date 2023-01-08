@@ -1,6 +1,8 @@
 <?php 
   global $connection;
   session_start();
+
+  
 ?>
 
 <!-- Navigation -->
