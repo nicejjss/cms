@@ -220,6 +220,11 @@ if (isset($_POST['unlike'])) {
     <?php include("./includes/footer.php") ?>
     <script>
         function Click() {
+            var name = '<?php echo isset($_SESSION['name']);?>';
+            if(name ==false){
+                alert("You Must Log In First");
+            }
+            else{
             var format ='';
         var p= document.getElementById('like');
         var xhttp = new XMLHttpRequest();
@@ -244,5 +249,5 @@ xhttp.open("POST", "post.php", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 // var format ="Hello=123";
 xhttp.send(format);
-        }
+        }}
     </script>
