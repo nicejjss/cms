@@ -98,7 +98,7 @@
     </div>
     <div class="form-group" id="postimg">
         <label for="post_image">Post Image</label>
-        <input type="file" name="image">
+        <input type="file" id='img_select' name="image">
         <img style="margin-top: 10px;" width="150px" src="../images/<?php echo $img ?>" alt="" >
     </div>
     <div class="form-group">
@@ -134,7 +134,7 @@ ClassicEditor
         const [file] = img.files;
   if (file) {
     img.src = URL.createObjectURL(file);
-    console.log(file);
+    console.log(img.src);
   }
         if (!document.getElementsByTagName("img")[0]) {
             var image = document.createElement("img");
