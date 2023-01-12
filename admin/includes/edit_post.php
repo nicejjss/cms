@@ -131,25 +131,29 @@ ClassicEditor
      var postimg=document.getElementById("postimg");
      var img= document.getElementsByName("image")[0];
      img.onchange=function(e){
-        if(!document.getElementsByTagName("img")[0]){
-       var image= document.createElement("img");
-        image.id="img";
-        image.src="../images/"+ e.target.files[0].name;;
-        image.width="150";
-        image.style="margin-top: 10px";
-        postimg.appendChild(image);}
-        else{
-          var image=document.getElementsByTagName("img")[0];
-          image.remove();
-          image= document.createElement("img");
-        image.id="img";
-        image.src="../images/"+ e.target.files[0].name;;
-        image.width="150";
-        image.style="margin-top: 10px";
-        postimg.appendChild(image);
+        const [file] = img.files;
+  if (file) {
+    img.src = URL.createObjectURL(file);
+    console.log(file);
+  }
+        if (!document.getElementsByTagName("img")[0]) {
+            var image = document.createElement("img");
+            image.id = "img";
+            image.src = img.src;
+            image.width = "400";
+            image.style = "margin-top: 10px";
+            postimg.appendChild(image);
+        } else {
+            var src = document.getElementById('img_select').src;
+            var image = document.getElementsByTagName("img")[0];
+            image.remove();
+            image = document.createElement("img");
+            image.id = "img";
+            image.src = img.src;
+            image.width = "400";
+            image.style = "margin-top: 10px";
+            postimg.appendChild(image);
         }
-
-        console.log(img.value);
-        };
+    };
     
 </script>
