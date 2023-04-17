@@ -132,7 +132,7 @@
                 echo "<li><a href='index.php?page=${i}'>".$i."</a></li>";
             }
           
-          echo 
+         
        }?>
         </ul>
         <a ></a>
