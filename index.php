@@ -18,6 +18,7 @@
                 </h1> -->
             <?php
           $postperpage =5;
+          
 
          $query="Select * from posts where post_status='publish'";
          $result=mysqli_query($connection,$query);
@@ -131,7 +132,7 @@
                 echo "<li><a href='index.php?page=${i}'>".$i."</a></li>";
             }
           
-
+          echo 
        }?>
         </ul>
         <a ></a>
