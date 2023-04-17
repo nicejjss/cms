@@ -7,7 +7,7 @@
 
     <!-- Page Content -->
     <div class="container">
-
+      <p>123123</p>
         <div class="row">
 
             <!-- Blog Entries Column -->
